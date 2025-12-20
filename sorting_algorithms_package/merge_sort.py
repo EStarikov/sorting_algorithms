@@ -1,33 +1,28 @@
-def merge_sort(mas, lower, upper):
-    if len(mas) <= 1:
-        return mas
-    if lower >= upper:
-        return
-    mid = (lower + upper) // 2
-    merge_sort(mas, lower, mid)
-    merge_sort(mas, mid + 1, upper)
+def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
 
-    merged = merge(mas, lower, mid, mid + 1, upper)
+    mid = len(arr) // 2
+    left = arr[:mid]
+    right = arr[mid:]
 
-    for i, val in enumerate(merged):
-        mas[lower + i] = val
-    return mas
+    left = merge_sort(left)
+    right = merge_sort(right)
 
+    return merge(left, right)
 
-def merge(mas, l_lower, l_upper, r_lower, r_upper):
-    i, j = l_lower, r_lower
-    temp = []
-    while i <= l_upper and j <= r_upper:
-        if mas[i] <= mas[j]:
-            temp.append(mas[i])
+def merge(left, right):
+    result = []
+    i = j = 0
+
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            result.append(left[i])
             i += 1
         else:
-            temp.append(mas[j])
+            result.append(right[j])
             j += 1
-    while i <= l_upper:
-        temp.append(mas[i])
-        i += 1
-    while j <= r_upper:
-        temp.append(mas[j])
-        j += 1
-    return temp
+
+    result.extend(left[i:])
+    result.extend(right[j:])
+    return result

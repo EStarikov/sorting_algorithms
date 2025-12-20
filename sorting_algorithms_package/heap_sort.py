@@ -13,9 +13,10 @@ def tree(arr, n, i):
 
 def heap_sort(arr):
     l = len(arr)
+    for i in range(l//2, -1, 1):
+        tree(arr, l, 1)
     while l - 1 > 0:
-        for i in range(l//2, -1, -1):
-            tree(arr, l, i)
         arr[0], arr[l-1] = arr[l-1], arr[0]
         l -= 1
-    return arr
+        tree(arr, l, 0)
+    return arr.copy()

@@ -10,4 +10,4 @@ from sorting_algorithms_package.merge_sort import merge_sort
         8, 1, 5], [1, 5, 8]), ([9, 7, 5, 3], [3, 5, 7, 9]), ([1, 2], [1, 2]), ([2, 1], [1, 2])]
 )
 def test_sort(n, expected):
-    assert merge_sort(n, 0, len(n) - 1) == expected
+    assert merge_sort(n) == expected

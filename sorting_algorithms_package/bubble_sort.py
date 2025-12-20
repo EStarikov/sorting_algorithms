@@ -8,4 +8,4 @@ def bubble_sort(mas):
                 swapped = True
         if not swapped:
             break
-    return mas
+    return mas.copy()
